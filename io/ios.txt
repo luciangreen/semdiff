@@ -1,0 +1,402 @@
+semdiff: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolog facts).
+
+1. semdiff([identity,reverse], [reverse,msort,identity,dedupe,identity])
+   => differs([0,0],[0,0],[0])
+2. normal([])
+   => []
+3. run([], [0,9,3,5,9])
+   => [0,9,3,5,9]
+4. semdiff([double,dedupe,msort,evens], [double,inc,reverse,reverse,reverse])
+   => differs([0],[0],[1])
+5. normal([msort,evens])
+   => [msort,evens]
+6. run([evens,reverse,msort,evens], [5,9,3,4])
+   => [4]
+7. semdiff([identity,inc,dedupe,dedupe,reverse], [inc,dedupe,reverse])
+   => same
+8. normal([])
+   => []
+9. run([reverse,identity], [0])
+   => [0]
+10. semdiff([evens,inc,inc,dedupe], [reverse,reverse,reverse])
+   => differs([0],[2],[0])
+11. normal([])
+   => []
+12. run([dedupe,identity,evens], [5,8,2,1,4])
+   => [2,4,8]
+13. semdiff([msort], [msort])
+   => same
+14. normal([identity])
+   => []
+15. run([inc,inc,inc], [])
+   => []
+16. semdiff([], [reverse,identity,reverse])
+   => same
+17. normal([inc,reverse])
+   => [inc,reverse]
+18. run([evens,msort,double], [])
+   => []
+19. semdiff([identity,reverse], [msort,inc,identity,reverse,reverse])
+   => differs([0],[0],[1])
+20. normal([msort])
+   => [msort]
+21. run([msort,double], [6,3,4])
+   => [6,8,12]
+22. semdiff([evens], [])
+   => differs([1],[],[1])
+23. normal([identity,double,double])
+   => [double,double]
+24. run([identity,reverse,identity,identity], [9,1,3,2,2,0])
+   => [0,2,2,3,1,9]
+25. semdiff([evens,msort,evens,reverse], [dedupe,reverse,msort,double])
+   => differs([1],[],[2])
+26. normal([evens,reverse])
+   => [evens,reverse]
+27. run([reverse,msort,inc], [8,4,3,4])
+   => [4,5,5,9]
+28. semdiff([inc,evens,dedupe], [double,msort,evens,msort])
+   => differs([0],[],[0])
+29. normal([evens])
+   => [evens]
+30. run([dedupe], [9,7,3,4,0,8])
+   => [0,3,4,7,8,9]
+31. semdiff([reverse,reverse], [reverse,reverse])
+   => same
+32. normal([double])
+   => [double]
+33. run([dedupe,reverse], [1,2,9,0,9,6])
+   => [9,6,2,1,0]
+34. semdiff([reverse,reverse,double,reverse], [double])
+   => differs([0,1],[2,0],[0,2])
+35. normal([])
+   => []
+36. run([evens,identity,inc,double,reverse], [2,8])
+   => [18,6]
+37. semdiff([], [evens,identity,dedupe,msort])
+   => differs([1],[1],[])
+38. normal([])
+   => []
+39. run([inc], [0,4,0,5,0,6])
+   => [1,5,1,6,1,7]
+40. semdiff([reverse,dedupe,reverse,reverse,dedupe], [reverse])
+   => differs([0,0],[0],[0,0])
+41. normal([dedupe])
+   => [dedupe]
+42. run([identity,reverse,double,identity,inc], [])
+   => []
+43. semdiff([identity], [reverse,reverse])
+   => same
+44. normal([])
+   => []
+45. run([double,inc,reverse], [])
+   => []
+46. semdiff([double,inc,identity], [reverse,evens,msort,reverse])
+   => differs([0],[1],[0])
+47. normal([msort,reverse,reverse])
+   => [msort]
+48. run([reverse,reverse,identity,dedupe], [7,3,7,5,5,9])
+   => [3,5,7,9]
+49. semdiff([evens], [msort,reverse])
+   => differs([1],[],[1])
+50. normal([evens])
+   => [evens]
+51. run([double,dedupe,inc,inc], [])
+   => []
+52. semdiff([reverse,reverse,identity,msort], [msort,evens,reverse])
+   => differs([1],[1],[])
+53. normal([msort,evens])
+   => [msort,evens]
+54. run([], [])
+   => []
+55. semdiff([identity,reverse,msort], [msort,msort,msort])
+   => same
+56. normal([evens,inc,evens])
+   => [evens,inc,evens]
+57. run([msort,msort,reverse,reverse], [2,3,2,0])
+   => [0,2,2,3]
+58. semdiff([reverse,msort], [msort])
+   => same
+59. normal([reverse,dedupe,reverse])
+   => [dedupe,reverse]
+60. run([msort,double,dedupe,reverse,dedupe], [])
+   => []
+61. semdiff([reverse], [reverse])
+   => same
+62. normal([msort,identity,evens])
+   => [msort,evens]
+63. run([], [4,9])
+   => [4,9]
+64. semdiff([inc,identity,msort,msort], [evens,msort,identity,reverse])
+   => differs([0],[1],[0])
+65. normal([])
+   => []
+66. run([identity,msort,double], [9])
+   => [18]
+67. semdiff([reverse,msort,evens,identity], [reverse,reverse,msort,evens])
+   => same
+68. normal([evens,msort,msort])
+   => [evens,msort]
+69. run([reverse,evens,reverse,double], [2,3,9,8,5])
+   => [4,16]
+70. semdiff([], [])
+   => same
+71. normal([msort,msort,inc,reverse,reverse])
+   => [msort,inc]
+72. run([reverse,msort], [6,5,0,4])
+   => [0,4,5,6]
+73. semdiff([reverse], [reverse])
+   => same
+74. normal([reverse,double])
+   => [reverse,double]
+75. run([inc,msort,inc,reverse], [1])
+   => [3]
+76. semdiff([], [reverse,reverse])
+   => same
+77. normal([inc])
+   => [inc]
+78. run([evens], [5,4])
+   => [4]
+79. semdiff([], [msort,evens])
+   => differs([1],[1],[])
+80. normal([dedupe,inc,evens,evens,msort])
+   => [dedupe,inc,evens,msort]
+81. run([reverse,double,msort,dedupe], [8,7,2,5])
+   => [4,10,14,16]
+82. semdiff([reverse], [reverse])
+   => same
+83. normal([inc,reverse,msort,reverse,reverse])
+   => [inc,msort]
+84. run([dedupe,inc,msort], [])
+   => []
+85. semdiff([reverse,msort,msort,msort,inc], [reverse,reverse,msort,inc])
+   => same
+86. normal([msort,double,inc,msort,reverse])
+   => [msort,double,inc,msort,reverse]
+87. run([dedupe,msort,evens,msort], [3,9])
+   => []
+88. semdiff([], [inc,identity])
+   => differs([0],[0],[1])
+89. normal([reverse,double,dedupe,identity,double])
+   => [reverse,double,dedupe,double]
+90. run([double,identity,msort,msort], [7,5])
+   => [10,14]
+91. semdiff([double,inc,dedupe,msort], [double,inc,dedupe])
+   => same
+92. normal([])
+   => []
+93. run([msort,identity,msort,reverse], [8,8,8,0])
+   => [8,8,8,0]
+94. semdiff([], [])
+   => same
+95. normal([identity,inc,reverse,evens,double])
+   => [inc,reverse,evens,double]
+96. run([dedupe,double,evens,msort], [6,0])
+   => [0,12]
+97. semdiff([], [])
+   => same
+98. normal([msort,inc,inc,reverse])
+   => [msort,inc,inc,reverse]
+99. run([reverse,double], [2])
+   => [4]
+100. semdiff([evens,inc,reverse], [reverse,reverse,evens,inc,reverse])
+   => same
+101. normal([inc,reverse,double,identity,evens])
+   => [inc,reverse,double]
+102. run([msort,dedupe,inc], [9,1])
+   => [2,10]
+103. semdiff([inc,msort,double,dedupe], [inc,msort,double,dedupe])
+   => same
+104. normal([identity,double])
+   => [double]
+105. run([identity,dedupe,dedupe,msort], [4])
+   => [4]
+106. semdiff([inc,reverse,identity,dedupe,reverse], [reverse,dedupe])
+   => differs([0],[1],[0])
+107. normal([inc])
+   => [inc]
+108. run([reverse], [6])
+   => [6]
+109. semdiff([msort,dedupe,reverse,msort], [evens,msort,evens,msort])
+   => differs([1],[1],[])
+110. normal([])
+   => []
+111. run([dedupe,reverse,msort,evens], [3,3,1])
+   => []
+112. semdiff([reverse,dedupe,identity,double], [dedupe,double])
+   => same
+113. normal([identity,reverse])
+   => [reverse]
+114. run([double], [6])
+   => [12]
+115. semdiff([], [])
+   => same
+116. normal([msort])
+   => [msort]
+117. run([reverse,reverse,msort,msort,identity], [1,1,0])
+   => [0,1,1]
+118. semdiff([evens,evens,msort,evens,msort], [reverse])
+   => differs([1],[],[1])
+119. normal([msort])
+   => [msort]
+120. run([msort,inc,reverse,reverse], [0,6,3])
+   => [1,4,7]
+121. semdiff([msort,double,evens], [reverse,evens])
+   => differs([1],[2],[])
+122. normal([reverse,msort,inc,msort,reverse])
+   => [msort,inc,msort,reverse]
+123. run([msort,msort], [9,4])
+   => [4,9]
+124. semdiff([reverse], [reverse,reverse,reverse])
+   => same
+125. normal([evens,double,evens])
+   => [evens,double]
+126. run([inc,identity,msort], [0,6,4,2,2,1])
+   => [1,2,3,3,5,7]
+127. semdiff([identity,msort,identity,reverse,reverse], [identity,msort])
+   => same
+128. normal([msort,evens,dedupe,msort])
+   => [msort,evens,dedupe]
+129. run([evens,double,msort], [7,6])
+   => [12]
+130. semdiff([reverse,identity,reverse], [])
+   => same
+131. normal([identity,double,identity,dedupe,dedupe])
+   => [double,dedupe]
+132. run([dedupe,msort,identity], [3,3,1,9,2])
+   => [1,2,3,9]
+133. semdiff([], [reverse,reverse])
+   => same
+134. normal([evens])
+   => [evens]
+135. run([evens,reverse,evens,msort,msort], [6,7,9,3,5,3])
+   => [6]
+136. semdiff([msort,reverse,identity,evens,identity], [])
+   => differs([1],[],[1])
+137. normal([inc,dedupe])
+   => [inc,dedupe]
+138. run([dedupe,evens], [9,2])
+   => [2]
+139. semdiff([inc,reverse], [])
+   => differs([0],[1],[0])
+140. normal([evens,reverse,identity])
+   => [evens,reverse]
+141. run([evens,inc,reverse,msort,inc], [0,3])
+   => [2]
+142. semdiff([msort,double,identity,reverse], [inc,evens,reverse,reverse,reverse])
+   => differs([0],[0],[])
+143. normal([reverse,reverse,dedupe,inc,dedupe])
+   => [dedupe,inc,dedupe]
+144. run([], [6,5])
+   => [6,5]
+145. semdiff([], [msort,evens,evens,dedupe,reverse])
+   => differs([1],[1],[])
+146. normal([])
+   => []
+147. run([], [3,4,1,3,0])
+   => [3,4,1,3,0]
+148. semdiff([identity,dedupe,msort,reverse], [dedupe,reverse])
+   => same
+149. normal([])
+   => []
+150. run([inc,identity,reverse,inc], [6,7,2,5,7])
+   => [9,7,4,9,8]
+151. semdiff([evens,double,identity], [reverse,reverse,evens,double])
+   => same
+152. normal([inc,reverse,dedupe,msort,inc])
+   => [inc,dedupe,inc]
+153. run([double,reverse], [5])
+   => [10]
+154. semdiff([reverse,msort,msort,dedupe,reverse], [dedupe,reverse])
+   => same
+155. normal([identity])
+   => []
+156. run([dedupe,dedupe,dedupe], [3,2,3,8,7,9])
+   => [2,3,7,8,9]
+157. semdiff([evens,identity,evens,evens], [evens])
+   => same
+158. normal([double,reverse,evens,reverse,inc])
+   => [double,reverse,evens,reverse,inc]
+159. run([dedupe,inc,double], [])
+   => []
+160. semdiff([inc,msort], [evens])
+   => differs([0],[1],[0])
+161. normal([evens,msort])
+   => [evens,msort]
+162. run([reverse], [])
+   => []
+163. semdiff([identity,msort,evens,msort,double], [inc])
+   => differs([0],[0],[1])
+164. normal([reverse,msort,reverse,msort,evens])
+   => [msort,evens]
+165. run([], [0,7,6,8,0])
+   => [0,7,6,8,0]
+166. semdiff([dedupe], [reverse,reverse,dedupe])
+   => same
+167. normal([identity])
+   => []
+168. run([double], [])
+   => []
+169. semdiff([double,reverse,reverse,inc,reverse], [identity,dedupe,identity])
+   => differs([0],[1],[0])
+170. normal([])
+   => []
+171. run([double,identity,double], [7,0,4,3,4,6])
+   => [28,0,16,12,16,24]
+172. semdiff([dedupe,reverse,identity,dedupe], [reverse,reverse,dedupe])
+   => same
+173. normal([reverse,msort,double,reverse,msort])
+   => [msort,double,msort]
+174. run([double,identity,msort,evens,reverse], [0,8])
+   => [16,0]
+175. semdiff([evens,inc,double,reverse], [reverse,reverse,evens,inc,double,reverse])
+   => same
+176. normal([identity,msort])
+   => [msort]
+177. run([dedupe], [2,1,0,6,4])
+   => [0,1,2,4,6]
+178. semdiff([], [evens,inc])
+   => differs([0],[0],[1])
+179. normal([dedupe,double])
+   => [dedupe,double]
+180. run([dedupe,identity,msort], [1,4,3,8,6,1])
+   => [1,3,4,6,8]
+181. semdiff([evens,identity,inc,reverse,double], [reverse,reverse,evens,inc,reverse,double])
+   => same
+182. normal([])
+   => []
+183. run([], [6])
+   => [6]
+184. semdiff([evens,reverse,reverse,double], [msort])
+   => differs([1],[],[1])
+185. normal([dedupe,inc,dedupe,inc])
+   => [dedupe,inc,dedupe,inc]
+186. run([msort,msort], [3,8,1])
+   => [1,3,8]
+187. semdiff([inc,reverse,msort,identity,msort], [inc,evens])
+   => differs([0],[1],[])
+188. normal([double,identity])
+   => [double]
+189. run([reverse,reverse,reverse,double], [0,5,2,4,7])
+   => [14,8,4,10,0]
+190. semdiff([msort,msort,msort,reverse,dedupe], [inc,identity,msort,msort,identity])
+   => differs([0],[0],[1])
+191. normal([])
+   => []
+192. run([double,inc,inc,reverse,evens], [3])
+   => [8]
+193. semdiff([reverse,double,reverse,reverse], [reverse,reverse,reverse,double])
+   => same
+194. normal([evens])
+   => [evens]
+195. run([reverse], [2,6,8,8])
+   => [8,8,6,2]
+196. semdiff([evens,double], [double,double,reverse,reverse])
+   => differs([1],[],[4])
+197. normal([reverse,double])
+   => [reverse,double]
+198. run([msort], [8,1,8])
+   => [1,8,8]
+199. semdiff([inc,inc], [inc,inc])
+   => same
+200. normal([])
+   => []
