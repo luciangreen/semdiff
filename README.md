@@ -9,17 +9,19 @@ did a change actually change what the program does? Two versions of a list progr
 ?- normal([reverse, reverse, msort], N).                   % N = [msort]
 ?- semdiff([msort, dedupe], [dedupe], D).                  % D = same
 ?- semdiff([inc, double], [double, inc], D).               % D = differs([0], [2], [1])
+?- semdiff([msort, evens], [evens, msort], D).              % D = same
 ```
 
 ## Proofs
 
-`proofs/theorems.pl` proves 5 theorems by exhaustion: each one is checked for every case in a finite domain that covers every branch of the definitions. every program of up to 3 steps; every list of length 0..3 over 0..3.
+`proofs/theorems.pl` proves 6 theorems by exhaustion: each one is checked for every case in a finite domain that covers every branch of the definitions. every program of up to 3 steps; every list of length 0..3 over 0..3.
 
 1. Every rule is sound: both sides give the same output on every input.
 2. Normalising keeps the meaning: a program and its normal form agree everywhere.
 3. Normalising is idempotent and never makes a program longer.
 4. same means the programs agree on every input; differs gives a genuine difference.
 5. semdiff is symmetric in whether the programs are the same.
+6. Programs that differ only in where evens sits among sorts and reverses are proved the same (evens commutes with msort, dedupe and reverse).
 
 ```sh
 swipl -g main -t halt proofs/theorems.pl
