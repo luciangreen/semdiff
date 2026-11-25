@@ -66,7 +66,7 @@ io(64, semdiff, [[inc, identity, msort, msort], [evens, msort, identity, reverse
 io(65, normal, [[]], []).
 io(66, run, [[identity, msort, double], [9]], [18]).
 io(67, semdiff, [[reverse, msort, evens, identity], [reverse, reverse, msort, evens]], same).
-io(68, normal, [[evens, msort, msort]], [evens, msort]).
+io(68, normal, [[evens, msort, msort]], [msort, evens]).
 io(69, run, [[reverse, evens, reverse, double], [2, 3, 9, 8, 5]], [4, 16]).
 io(70, semdiff, [[], []], same).
 io(71, normal, [[msort, msort, inc, reverse, reverse]], [msort, inc]).
@@ -78,7 +78,7 @@ io(76, semdiff, [[], [reverse, reverse]], same).
 io(77, normal, [[inc]], [inc]).
 io(78, run, [[evens], [5, 4]], [4]).
 io(79, semdiff, [[], [msort, evens]], differs([1], [1], [])).
-io(80, normal, [[dedupe, inc, evens, evens, msort]], [dedupe, inc, evens, msort]).
+io(80, normal, [[dedupe, inc, evens, evens, msort]], [dedupe, inc, msort, evens]).
 io(81, run, [[reverse, double, msort, dedupe], [8, 7, 2, 5]], [4, 10, 14, 16]).
 io(82, semdiff, [[reverse], [reverse]], same).
 io(83, normal, [[inc, reverse, msort, reverse, reverse]], [inc, msort]).
@@ -93,7 +93,7 @@ io(91, semdiff, [[double, inc, dedupe, msort], [double, inc, dedupe]], same).
 io(92, normal, [[]], []).
 io(93, run, [[msort, identity, msort, reverse], [8, 8, 8, 0]], [8, 8, 8, 0]).
 io(94, semdiff, [[], []], same).
-io(95, normal, [[identity, inc, reverse, evens, double]], [inc, reverse, evens, double]).
+io(95, normal, [[identity, inc, reverse, evens, double]], [inc, evens, reverse, double]).
 io(96, run, [[dedupe, double, evens, msort], [6, 0]], [0, 12]).
 io(97, semdiff, [[], []], same).
 io(98, normal, [[msort, inc, inc, reverse]], [msort, inc, inc, reverse]).
@@ -126,7 +126,7 @@ io(124, semdiff, [[reverse], [reverse, reverse, reverse]], same).
 io(125, normal, [[evens, double, evens]], [evens, double]).
 io(126, run, [[inc, identity, msort], [0, 6, 4, 2, 2, 1]], [1, 2, 3, 3, 5, 7]).
 io(127, semdiff, [[identity, msort, identity, reverse, reverse], [identity, msort]], same).
-io(128, normal, [[msort, evens, dedupe, msort]], [msort, evens, dedupe]).
+io(128, normal, [[msort, evens, dedupe, msort]], [dedupe, evens]).
 io(129, run, [[evens, double, msort], [7, 6]], [12]).
 io(130, semdiff, [[reverse, identity, reverse], []], same).
 io(131, normal, [[identity, double, identity, dedupe, dedupe]], [double, dedupe]).
@@ -156,10 +156,10 @@ io(154, semdiff, [[reverse, msort, msort, dedupe, reverse], [dedupe, reverse]], 
 io(155, normal, [[identity]], []).
 io(156, run, [[dedupe, dedupe, dedupe], [3, 2, 3, 8, 7, 9]], [2, 3, 7, 8, 9]).
 io(157, semdiff, [[evens, identity, evens, evens], [evens]], same).
-io(158, normal, [[double, reverse, evens, reverse, inc]], [double, reverse, evens, reverse, inc]).
+io(158, normal, [[double, reverse, evens, reverse, inc]], [double, inc]).
 io(159, run, [[dedupe, inc, double], []], []).
 io(160, semdiff, [[inc, msort], [evens]], differs([0], [1], [0])).
-io(161, normal, [[evens, msort]], [evens, msort]).
+io(161, normal, [[evens, msort]], [msort, evens]).
 io(162, run, [[reverse], []], []).
 io(163, semdiff, [[identity, msort, evens, msort, double], [inc]], differs([0], [0], [1])).
 io(164, normal, [[reverse, msort, reverse, msort, evens]], [msort, evens]).

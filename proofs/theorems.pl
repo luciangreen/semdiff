@@ -29,3 +29,7 @@ theorem(verdicts_are_true) :-
 
 % 5. semdiff is symmetric in whether the programs are the same.
 theorem(same_is_symmetric) :- forall(( prog(A), length(A, LA), LA =< 2, prog(B), length(B, LB), LB =< 2 ), iff(semdiff(A, B, same), semdiff(B, A, same))).
+
+% 6. Programs that differ only in where evens sits among sorts and reverses are proved the same.
+theorem(commuting_steps_are_same) :- forall(( member(S, [msort, dedupe, reverse]), member(T, [[], [inc], [double]]) ),
+    ( append([S, evens], T, A), append([evens, S], T, B), semdiff(A, B, same) )).

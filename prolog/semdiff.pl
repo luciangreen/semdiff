@@ -5,6 +5,7 @@
 %?- normal([reverse, reverse, msort], N).                   % N = [msort]
 %?- semdiff([msort, dedupe], [dedupe], D).                  % D = same
 %?- semdiff([inc, double], [double, inc], D).               % D = differs([0], [2], [1])
+%?- semdiff([msort, evens], [evens, msort], D).              % D = same
 :- module(semdiff, [step/3, run/3, rule/2, normal/2, semdiff/3]).
 :- use_module(library(lists)).
 :- use_module(library(apply)).
@@ -30,8 +31,15 @@ rule([dedupe, msort], [dedupe]).
 rule([dedupe, dedupe], [dedupe]).
 rule([evens, evens], [evens]).
 rule([double, evens], [double]).          % every doubled number is even
+% keeping the even items commutes with sorting and with reversing: a fixed order (sorts first, then evens,
+% then reverse) gives such programs one normal form. These rules keep the length; evens only moves right
+% past a sort and left past a reverse, so rewriting still ends.
+rule([evens, msort], [msort, evens]).
+rule([evens, dedupe], [dedupe, evens]).
+rule([reverse, evens], [evens, reverse]).
 
-% normal(+Program, -Normal): rewrite until no rule applies (each rule makes the program shorter, so this ends).
+% normal(+Program, -Normal): rewrite until no rule applies (each rule makes the program shorter, or moves
+% evens past a sort or a reverse, which can happen only finitely often, so this ends).
 normal(P, N) :- ( append(Pre, Rest, P), rule(L, R), append(L, Post, Rest) -> append([Pre, R, Post], P1), normal(P1, N) ; N = P ).
 
 % semdiff(+Old, +New, -Diff): same, differs(Input, OldOut, NewOut), or unknown.

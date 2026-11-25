@@ -135,7 +135,7 @@ semdiff: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolo
 67. semdiff([reverse,msort,evens,identity], [reverse,reverse,msort,evens])
    => same
 68. normal([evens,msort,msort])
-   => [evens,msort]
+   => [msort,evens]
 69. run([reverse,evens,reverse,double], [2,3,9,8,5])
    => [4,16]
 70. semdiff([], [])
@@ -159,7 +159,7 @@ semdiff: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolo
 79. semdiff([], [msort,evens])
    => differs([1],[1],[])
 80. normal([dedupe,inc,evens,evens,msort])
-   => [dedupe,inc,evens,msort]
+   => [dedupe,inc,msort,evens]
 81. run([reverse,double,msort,dedupe], [8,7,2,5])
    => [4,10,14,16]
 82. semdiff([reverse], [reverse])
@@ -189,7 +189,7 @@ semdiff: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolo
 94. semdiff([], [])
    => same
 95. normal([identity,inc,reverse,evens,double])
-   => [inc,reverse,evens,double]
+   => [inc,evens,reverse,double]
 96. run([dedupe,double,evens,msort], [6,0])
    => [0,12]
 97. semdiff([], [])
@@ -255,7 +255,7 @@ semdiff: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolo
 127. semdiff([identity,msort,identity,reverse,reverse], [identity,msort])
    => same
 128. normal([msort,evens,dedupe,msort])
-   => [msort,evens,dedupe]
+   => [dedupe,evens]
 129. run([evens,double,msort], [7,6])
    => [12]
 130. semdiff([reverse,identity,reverse], [])
@@ -315,13 +315,13 @@ semdiff: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolo
 157. semdiff([evens,identity,evens,evens], [evens])
    => same
 158. normal([double,reverse,evens,reverse,inc])
-   => [double,reverse,evens,reverse,inc]
+   => [double,inc]
 159. run([dedupe,inc,double], [])
    => []
 160. semdiff([inc,msort], [evens])
    => differs([0],[1],[0])
 161. normal([evens,msort])
-   => [evens,msort]
+   => [msort,evens]
 162. run([reverse], [])
    => []
 163. semdiff([identity,msort,evens,msort,double], [inc])
